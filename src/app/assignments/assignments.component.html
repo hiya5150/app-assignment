@@ -1,0 +1,28 @@
+<form ngForm #assignmentsForm class="form">
+  <mat-form-field>
+    <!--ngmodel is used so as you type it will output to the screen, its good for the project that episode appear as person types instead of just output with p tag, use search statement-->
+    <input matInput #assignmentName [(ngModel)]="name" name="name">
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput [matDatepicker]="picker" [(ngModel)]="dueDate" name="name" placeholder="Whens your assignment due?">
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+  </mat-form-field>
+  <button mat-stroked-button color="primary" [disabled] = "!enabled" (click)="onSubmit(); assignmentsForm.reset()">Add Assignment</button>
+</form>
+
+<p>{{name}}</p>
+<p>{{dueDate}}</p>
+
+<mat-list *ngFor="let assignment of assignments">
+  <h3 mat-subheader>{{assignment.dueDate | date}}</h3>
+  <mat-list-item (click)="setSelected(assignment)">
+    <p appSubmitted *ngIf="assignment.submitted; else unsubmitted">Assignment {{assignment.name}} has been submitted</p>
+
+    <ng-template #unsubmitted>Assignment {{assignment.name}} hasn't been submitted</ng-template>
+
+    <mat-divider></mat-divider>
+  </mat-list-item>
+</mat-list>
+<app-assignment-detail [passedAssignment]="selectedAssignment"></app-assignment-detail>
