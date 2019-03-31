@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import {
-  MatButtonModule,
+  MatButtonModule, MatCardModule, MatCheckboxModule,
   MatDatepickerModule,
   MatFormFieldModule,
   MatInputModule,
@@ -17,6 +17,8 @@ import { UnsubmittedDirective } from './shared/unsubmitted.directive';
 import {FormsModule} from '@angular/forms';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { AssignmentDetailComponent } from './assignments/assignment-detail/assignment-detail.component';
+import { AddAssignmentComponent } from './assignments/add-assignment/add-assignment.component';
+import {AssignmentsService} from './shared/assignments.service';
 
 
 @NgModule({
@@ -25,7 +27,8 @@ import { AssignmentDetailComponent } from './assignments/assignment-detail/assig
     AssignmentsComponent,
     SubmittedDirective,
     UnsubmittedDirective,
-    AssignmentDetailComponent
+    AssignmentDetailComponent,
+    AddAssignmentComponent
   ],
   imports: [
     BrowserModule,
@@ -37,9 +40,11 @@ import { AssignmentDetailComponent } from './assignments/assignment-detail/assig
     BrowserAnimationsModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    MatListModule
+    MatListModule,
+    MatCardModule,
+    MatCheckboxModule
   ],
-  providers: [],
+  providers: [AssignmentsService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

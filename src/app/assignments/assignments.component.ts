@@ -11,6 +11,7 @@ export class AssignmentsComponent implements OnInit {
   enabled = false;
   name: string;
   dueDate: Date;
+  formVisible = false;
 
   selectedAssignment: Assignment;
   assignments: Assignment[] = [{
@@ -31,15 +32,13 @@ export class AssignmentsComponent implements OnInit {
     }, 2000);
   }
 
-  onSubmit() {
-    const assignment = new Assignment();
-    assignment.name = this.name;
-    assignment.dueDate = this.dueDate;
-    assignment.submitted = false;
-    this.assignments.push(assignment);
-  }
+
   setSelected(assignment: Assignment) {
     this.selectedAssignment = assignment;
+  }
+
+  onAddBtnClick() {
+    this.formVisible = true;
   }
 
 }
